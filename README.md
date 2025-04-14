@@ -1,66 +1,81 @@
-## Foundry
+# Foundry Lottery Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project is a decentralized lottery system built using Solidity and the Foundry framework. It leverages Chainlink VRF (Verifiable Random Function) for secure and tamper-proof randomness to select lottery winners.
 
-Foundry consists of:
+---
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Features
 
-## Documentation
+- **Decentralized Lottery**: Users can enter the lottery by paying an entrance fee.
+- **Random Winner Selection**: Uses Chainlink VRF to ensure randomness in winner selection.
+- **Configurable Parameters**: Supports multiple networks (e.g., Sepolia, localhost) with customizable settings.
+- **Automated Testing**: Includes unit and integration tests using Foundry's testing framework.
 
-https://book.getfoundry.sh/
+---
+
+## Tools Used
+
+- **Foundry**: A fast, portable, and modular toolkit for Ethereum development.
+  - **Forge**: Testing framework for smart contracts.
+  - **Cast**: CLI tool for interacting with Ethereum smart contracts.
+  - **Anvil**: Local Ethereum node for testing and development.
+
+- **Chainlink VRF**: Provides secure and verifiable randomness for selecting lottery winners.
+
+---
+
+## Project Structure
+
+- **`src/`**: Contains the main smart contract (`Raffle.sol`) implementing the lottery logic.
+- **`script/`**: Deployment and interaction scripts.
+  - `DeployRaffle.s.sol`: Deploys the `Raffle` contract and sets up Chainlink VRF subscriptions.
+  - `HelperConfig.s.sol`: Provides network-specific configurations.
+- **`test/`**: Unit and integration tests for the contracts.
+- **`lib/`**: External libraries and dependencies.
+
+---
+
+## Prerequisites
+
+- Install Foundry by following the [Foundry installation guide](https://book.getfoundry.sh/getting-started/installation.html).
+- Set up a Chainlink VRF subscription and fund it with LINK tokens.
+
+---
 
 ## Usage
 
-### Build
+### Build the Project
 
 ```shell
-$ forge build
+forge build
 ```
 
-### Test
+### Run Tests
 
 ```shell
-$ forge test
+forge test
 ```
 
-### Format
+### Format Code
 
 ```shell
-$ forge fmt
+forge fmt
+```
+
+### Deploy the Contract
+
+Replace `<your_rpc_url>` and `<your_private_key>` with your RPC URL and private key.
+
+```shell
+forge script script/DeployRaffle.s.sol:DeployRaffle --rpc-url <your_rpc_url> --private-key <your_private_key> --broadcast
+```
+
+### Run a Local Node
+
+```shell
+anvil
 ```
 
 ### Gas Snapshots
 
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Generate gas
